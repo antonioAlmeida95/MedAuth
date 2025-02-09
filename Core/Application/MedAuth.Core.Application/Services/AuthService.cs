@@ -49,7 +49,7 @@ public class AuthService : IAuthService
 
     private static IEnumerable<Claim> ObterClaimsUsuario(Usuario usuario)
     {
-        var permissoes = usuario.Pessoa.Perfil.Permissoes.Select(s => s.Permissao.Valor) ?? [];
+        var permissoes = usuario.Pessoa.Perfil.Permissoes.Select(s => s.Permissao.Nome) ?? [];
         var claims = new List<Claim> { new (ClaimTypes.Email, usuario.Email), new (ClaimTypes.Name, usuario.Email) };
         claims.AddRange(permissoes.Select(s => new Claim(ClaimTypes.Role, s.ToString())));
 
